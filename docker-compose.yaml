@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  database:
+    image: postgres:${POSTGRES_VERSION}
+    restart: always
+    environment:
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+      POSTGRES_DB: ${PGDATABASE}
+    ports:
+      - ${PGPORT}:5432
+    volumes:
+      - ./db:/var/lib/postgresql/data
+
+  database_test:
+    image: postgres:${POSTGRES_VERSION}
+    restart: always
+    environment:
+      POSTGRES_USER: ${PGUSER_TEST}
+      POSTGRES_PASSWORD: ${PGPASSWORD_TEST}
+      POSTGRES_DB: ${PGDATABASE_TEST}
+    ports:
+      - ${PGPORT_TEST}:5432
+    volumes:
+      - ./db_test:/var/lib/postgresql/data
+volumes:
+  db:
+    driver: local
+  db_test:
+    driver: local
+networks:
+  postgres:
+    driver: bridge
