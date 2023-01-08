@@ -15,8 +15,8 @@ describe('/threads endpoint', () => {
     await ThreadsTableTestHelper.cleanTable();
     await AuthenticationsTableTestHelper.cleanTable();
   });
-  
-  beforeAll(async () => {
+
+  beforeEach(async () => {
     jest.setTimeout(30000);
   });
 
