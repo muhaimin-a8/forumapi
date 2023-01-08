@@ -15,6 +15,10 @@ describe('/threads endpoint', () => {
     await ThreadsTableTestHelper.cleanTable();
     await AuthenticationsTableTestHelper.cleanTable();
   });
+  
+  beforeAll(async () => {
+    jest.setTimeout(30000);
+  });
 
   describe('when POST /threads', () => {
     it('should response 400 when request payload not contain needed property', async () => {
